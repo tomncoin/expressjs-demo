@@ -1,6 +1,6 @@
 var Product = require('../models/product.model');
 
-module.exports.index = function(req, res){
+module.exports.index = function(req, res, next){
     // var page =  parseInt(req.query.page) || 1;
     // var perPage = 8;
     // var start = (page-1)*perPage;
@@ -10,12 +10,16 @@ module.exports.index = function(req, res){
     //     // products: db.get("Products").value().slice(start, end)
     //     products: db.get("Products").drop(start).take(perPage).value()
     // });
-
-    Product.find().then(function(products){
-        res.render('products/index',{
-            products: products
-        })
-    })
+    try{
+        Product.foo();
+        Product.find().then(function(products){
+            res.render('products/index',{
+                products: products
+            })
+        });
+    }catch(error){
+        next(error);
+    }
 };
 
 module.exports.postCreate = function(req, res){

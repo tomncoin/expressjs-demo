@@ -32,7 +32,6 @@ app.use(express.static('public'));
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(sessionMiddleware);
 
-
 app.use('/api/products', apiProduct);
 
 app.get('/', function(req, res){
