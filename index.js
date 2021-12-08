@@ -42,6 +42,8 @@ app.get('/', function(req, res){
     );
 });
 
+var port = process.env.PORT || 5000;
+
 app.use("/auth", authRoute);
 app.use(csurf({cookie: true}));
 app.use("/users", authMiddleware.requireAuth, userRoute);
@@ -51,5 +53,5 @@ app.use("/transfer", authMiddleware.requireAuth, transferRoute);
 
 
 app.listen(process.env.PORT, function(){
-    console.log('Server listening on port '+process.env.PORT);
+    console.log('Server listening on port '+ port);
 });

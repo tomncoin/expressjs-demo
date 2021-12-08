@@ -11,7 +11,7 @@ module.exports.index = function(req, res, next){
     //     products: db.get("Products").drop(start).take(perPage).value()
     // });
     try{
-        Product.foo();
+        // Product.foo();
         Product.find().then(function(products){
             res.render('products/index',{
                 products: products
