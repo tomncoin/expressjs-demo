@@ -1,7 +1,7 @@
 var express= require("express");
 var router = express.Router();
 var shortid=require('shortid');
-
+var Product = require('../models/product.model');
 
 var authMiddleware = require("../middlewares/auth.middleware");
 
@@ -55,10 +55,16 @@ router.post("/create1", function(req, res){
 
 router.get("/view/:code",function(req,res){
     var code=req.params.code;
-    var product=db.get("Products").find({id:code}).value();
-    res.render("products/view",{
-        product:product
-    });
+    // var product=db.get("Products").find({id:code}).value();
+    // res.render("products/view",{
+    //     product:product
+    // });
+
+    Product.find({_id: code}).then(function(product){
+        res.render('products/view',{
+            product:product
+        })
+    })
 });
 
 

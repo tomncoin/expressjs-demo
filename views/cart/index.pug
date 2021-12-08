@@ -18,13 +18,14 @@ block content
         //-         td
         //-             a(href="/products/view/"+product) View
 
-        each val,key  in products
-            tr 
-                td= key
-                td
-                td= val
-                td
-                    a(href="/products/view/"+key) View
+        if products
+            each val,key  in products
+                tr 
+                    td= key
+                    td
+                    td= val
+                    td
+                        a(href="/products/view/"+key) View
 
 
 
