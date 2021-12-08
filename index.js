@@ -32,6 +32,9 @@ app.use(express.static('public'));
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(sessionMiddleware);
 
+
+app.use('/api/products', apiProduct);
+
 app.get('/', function(req, res){
     //res.send('Welcome Node.js');
     res.render('index',{
@@ -47,7 +50,6 @@ app.use("/products",productRoute);
 app.use("/cart", cartRoute);
 app.use("/transfer", authMiddleware.requireAuth, transferRoute);
 
-app.use('/api/products', apiProduct);
 
 app.listen(process.env.PORT, function(){
     console.log('Server listening on port '+process.env.PORT);
